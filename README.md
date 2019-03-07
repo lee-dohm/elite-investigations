@@ -4,6 +4,10 @@ The website for the [Elite: Dangerous][elite] gaming group, "Elite: Investigatio
 
 [elite]: https://www.elitedangerous.com
 
+## GalNet News
+
+* [Machine-readable GalNet news feed](https://elitedangerous-website-backend-production.elitedangerous.com/api/galnet?_format=json)
+
 ## Phoenix Instructions
 
 To start your Phoenix server:
