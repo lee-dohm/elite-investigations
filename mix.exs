@@ -10,7 +10,8 @@ defmodule EliteInvestigations.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      docs: docs()
     ]
   end
 
@@ -33,6 +34,7 @@ defmodule EliteInvestigations.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:cmark, "~> 0.7"},
       {:ecto_sql, "~> 3.0"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
@@ -42,7 +44,8 @@ defmodule EliteInvestigations.MixProject do
       {:phoenix, "~> 1.4.1"},
       {:plug_cowboy, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
-      {:credo, "~> 0.10.0", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.19", only: [:dev, :test], runtime: false},
       {:phoenix_live_reload, "~> 1.2", only: :dev}
     ]
   end
@@ -58,6 +61,72 @@ defmodule EliteInvestigations.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"]
+    ]
+  end
+
+  defp docs do
+    [
+      main: "readme",
+      extras: [
+        "CODE_OF_CONDUCT.md",
+        "CONTRIBUTING.md",
+        "README.md": [
+          filename: "readme",
+          title: "README"
+        ],
+        "LICENSE.md": [
+          filename: "license",
+          title: "License"
+        ]
+      ]
+      # groups_for_modules: [
+      #   Accounts: [
+      #     ~r{^EliteInvestigations\.Accounts}
+      #   ],
+      #   Controllers: [
+      #     ~r{^EliteInvestigations.*Controller$}
+      #   ],
+      #   "Ecto Types": [
+      #     ~r{^EliteInvestigations.Ecto.*}
+      #   ],
+      #   Helpers: [
+      #     ~r{^EliteInvestigations.*Helpers$}
+      #   ],
+      #   Localization: [
+      #     EliteInvestigationsWeb.Gettext
+      #   ],
+      #   Markdown: [
+      #     ~r{Markdown}
+      #   ],
+      #   Notes: [
+      #     ~r{^EliteInvestigations.Notes}
+      #   ],
+      #   OAuth: [
+      #     EliteInvestigationsWeb.GitHub
+      #   ],
+      #   Plugs: [
+      #     EliteInvestigationsWeb.HerokuMetadata,
+      #     EliteInvestigationsWeb.PageMetadata,
+      #     EliteInvestigationsWeb.SlidingSessionTimeout
+      #   ],
+      #   Primer: [
+      #     ~r{^EliteInvestigationsWeb\.Primer}
+      #   ],
+      #   Sockets: [
+      #     ~r{^EliteInvestigationsWeb.*Socket$}
+      #   ],
+      #   Test: [
+      #     ~r{^EliteInvestigations.*(Channel|Conn|Data)Case$},
+      #     ~r{^EliteInvestigations.Support},
+      #     ~r{^Support}
+      #   ],
+      #   Tweaks: [
+      #     ~r{^EliteInvestigations\.Tweaks}
+      #   ],
+      #   Views: [
+      #     ~r{^EliteInvestigationsWeb.*View$}
+      #   ]
+      # ]
     ]
   end
 end
