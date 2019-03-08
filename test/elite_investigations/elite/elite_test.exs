@@ -40,7 +40,7 @@ defmodule EliteInvestigations.EliteTest do
       assert Elite.list_stories() == [story]
     end
 
-    test "get_story!/1 returns the stories with given id" do
+    test "get_story!/1 returns the story with given id" do
       story = story_fixture()
       assert Elite.get_story!(story.id) == story
     end
@@ -59,7 +59,7 @@ defmodule EliteInvestigations.EliteTest do
       assert {:error, %Ecto.Changeset{}} = Elite.create_story(@invalid_attrs)
     end
 
-    test "update_stories/2 with valid data updates the stories" do
+    test "update_story/2 with valid data updates the story" do
       story = story_fixture()
       assert {:ok, %Story{} = story} = Elite.update_story(story, @update_attrs)
       assert story.body == "some updated body"
