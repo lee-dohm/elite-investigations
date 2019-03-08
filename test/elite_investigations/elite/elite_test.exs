@@ -8,7 +8,7 @@ defmodule EliteInvestigations.EliteTest do
 
     @valid_attrs %{
       body: "some body",
-      date: "3305-03-05",
+      date: "05 MAR 3305",
       image: "some image",
       nid: 42,
       slug: "some slug",
@@ -17,7 +17,7 @@ defmodule EliteInvestigations.EliteTest do
 
     @update_attrs %{
       body: "some updated body",
-      date: "3304-01-23",
+      date: "23 JAN 3304",
       image: "some updated image",
       nid: 43,
       slug: "some updated slug",
@@ -48,7 +48,7 @@ defmodule EliteInvestigations.EliteTest do
     test "create_story/1 with valid data creates a story" do
       assert {:ok, %Story{} = story} = Elite.create_story(@valid_attrs)
       assert story.body == "some body"
-      assert story.date == "3305-03-05"
+      assert story.date == "05 MAR 3305"
       assert story.image == "some image"
       assert story.nid == 42
       assert story.slug == "some slug"
@@ -63,7 +63,7 @@ defmodule EliteInvestigations.EliteTest do
       story = story_fixture()
       assert {:ok, %Story{} = story} = Elite.update_story(story, @update_attrs)
       assert story.body == "some updated body"
-      assert story.date == "3304-01-23"
+      assert story.date == "23 JAN 3304"
       assert story.image == "some updated image"
       assert story.nid == 43
       assert story.slug == "some updated slug"
