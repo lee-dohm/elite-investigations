@@ -2,3 +2,11 @@
 a href="https://www.elitedangerous.com" Elite: Dangerous
 '
 ' commanders dedicated to uncovering truths, investigating conspiracies, and discovering hidden secrets!
+
+.Box--condensed.mt-4
+  .Box-header
+    h3.Box-title = gettext("Tools")
+  .Box-body
+    ul
+      li.Box-row
+        a href="#{Routes.story_path(@conn, :index)}" GalNet News
