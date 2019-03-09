@@ -27,14 +27,14 @@ html lang="en"
       main role="main"
         = render @view_module, @view_template, assigns
 
-    / footer.container.my-5
-    /   .columns
-    /     .two-fifths.column.centered
-    /       .border-top.text-center.small.my-2.pt-2
-    /         = link(gettext("About"), to: page_path(@conn, :about), id: "about-link")
-    /         span.px-3
-    /         = github_link(id: "github-link")
-    /       .text-center.small.my-2
-    /         = code_with_heart()
+    footer.container.my-5
+      .col-5.centered
+        .border-top.text-center.small.my-2.pt-2
+          = octicon(:code)
+          '
+          ' with
+          = octicon(:heart)
+          '
+          ' by Earen Erlkönig
 
     script src="#{Routes.static_path(@conn, "/js/app.js")}"
