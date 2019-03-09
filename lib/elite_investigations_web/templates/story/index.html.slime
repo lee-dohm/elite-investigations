@@ -1,1 +1,3 @@
-'story/index.html.slime
+h1 = gettext("GalNet Stories")
+
+= render_many_or_blank(@stories, StoryView, "table_row.html", "blankslate.html", assigns)

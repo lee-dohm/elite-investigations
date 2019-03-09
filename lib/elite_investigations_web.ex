@@ -41,9 +41,13 @@ defmodule EliteInvestigationsWeb do
 
       import EliteInvestigationsWeb.ErrorHelpers
       import EliteInvestigationsWeb.Gettext
-      import PhoenixOcticons
 
       alias EliteInvestigationsWeb.Router.Helpers, as: Routes
+
+      # Project-specific view helpers
+      import PhoenixOcticons
+
+      import EliteInvestigationsWeb.RenderHelpers
     end
   end
 
