@@ -6,4 +6,4 @@
       ' &mdash;
       = @story.date
   .Box-body
-    p = @story.body
+    .galnet-story = render_story(@story)

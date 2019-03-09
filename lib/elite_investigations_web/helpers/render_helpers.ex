@@ -7,6 +7,8 @@ defmodule EliteInvestigationsWeb.RenderHelpers do
 
   import Phoenix.View
 
+  alias EliteInvestigations.Elite.Story
+
   def render_many_or_blank(enumerable, many_template, blank_template, assigns = %{conn: conn}) do
     render_many_or_blank(
       enumerable,
@@ -23,5 +25,15 @@ defmodule EliteInvestigationsWeb.RenderHelpers do
     else
       render_many(enumerable, view, many_template, assigns)
     end
+  end
+
+  def render_story(story = %Story{}) do
+    story_body =
+      ~r{\<br\s*/\>}
+      |> Regex.split(story.body, trim: true)
+      |> Enum.map(fn paragraph -> "<p>#{paragraph}</p>" end)
+      |> Enum.join()
+
+    raw(story_body)
   end
 end
