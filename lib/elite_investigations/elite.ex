@@ -40,6 +40,11 @@ defmodule EliteInvestigations.Elite do
   def get_story_by_nid!(nid), do: Repo.get_by!(Story, nid: nid)
 
   @doc """
+  Indicates whether the story with the given `nid` exists.
+  """
+  def story_exists?(nid), do: !is_nil(Repo.get_by(Story, nid: nid))
+
+  @doc """
   Creates a story.
 
   ## Examples
