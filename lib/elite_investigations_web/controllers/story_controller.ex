@@ -15,4 +15,10 @@ defmodule EliteInvestigationsWeb.StoryController do
 
     render(conn, "index.html", stories: stories)
   end
+
+  def show(conn, %{"id" => nid}) do
+    story = Elite.get_story_by_nid!(nid)
+
+    render(conn, "show.html", story: story)
+  end
 end

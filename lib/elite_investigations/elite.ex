@@ -37,6 +37,8 @@ defmodule EliteInvestigations.Elite do
   """
   def get_story!(id), do: Repo.get!(Story, id)
 
+  def get_story_by_nid!(nid), do: Repo.get_by!(Story, nid: nid)
+
   @doc """
   Creates a story.
 

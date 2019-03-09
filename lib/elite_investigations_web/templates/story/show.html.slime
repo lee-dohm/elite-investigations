@@ -1,0 +1,9 @@
+.Box
+  .Box-header
+    h3.Box-title
+      = @story.title
+      '
+      ' &mdash;
+      = @story.date
+  .Box-body
+    p = @story.body
