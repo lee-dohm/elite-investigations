@@ -17,6 +17,9 @@ html lang="en"
           = mega_octicon(:rocket)
           = gettext "Elite: Investigations"
 
+        nav.masthead-nav
+          a href="https://www.reddit.com/r/EliteInvestigations/" Subreddit
+
     .container
       = if get_flash(@conn, :info) do
         p.flash role="alert" = get_flash(@conn, :info)
