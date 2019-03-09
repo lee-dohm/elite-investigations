@@ -5,7 +5,7 @@ html lang="en"
     meta http-equiv="X-UA-Compatible" content="IE=edge"
     meta name="viewport" content="width=device-width, initial-scale=1"
     meta name="description" content="Collection of information and tools for the Elite: Investigations gaming group"
-    meta name="author" content="Lee Dohm"
+    meta name="author" content="Earen Erlkönig"
 
     title = gettext "Elite: Investigations"
     link rel="stylesheet" href="#{Routes.static_path(@conn, "/css/app.css")}"
