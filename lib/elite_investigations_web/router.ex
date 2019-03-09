@@ -17,6 +17,8 @@ defmodule EliteInvestigationsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    resources "/galnet", StoryController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.
