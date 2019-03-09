@@ -21,11 +21,8 @@ Browse [open issues](https://github.com/lee-dohm/elite-investigations/issues) to
 You'll need to:
 
 1. Install [PostgreSQL][postgres-download] and start it
-1. Create [a GitHub OAuth app][oauth-app] - set the callback URL to `http://localhost:4000/auth/callback`
-1. Copy `.env.example` to `.env` and set the `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` values to the ones obtained from the application in the previous step
 1. Run `script/setup`
 
-[oauth-app]: https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/
 [postgres-download]: https://www.postgresql.org/download/
 
 ## Common Tasks
@@ -47,25 +44,6 @@ Other scripts that are available but not intended to be used directly by develop
 
 * `script/bootstrap` &mdash; Used to do a one-time install of all prerequisites for a development machine
 * `script/cibuild` &mdash; Used to run automated tests in the CI environment
-
-## Writing Tests
-
-* Controller specs should verify:
-    * HTTP Status
-    * Redirects
-    * Assigns
-    * Session values
-* Controller specs **should not** verify content
-* View specs should verify that given the expected assigns, the right content is displayed
-
-## Translations
-
-If you would like to help with translating Atom Tweaks into languages other than US English, you can:
-
-1. Create a new directory under `priv/gettext` that is the [name of the locale](https://en.wikipedia.org/wiki/Locale_(computer_software)) for which you will be providing a translation (for example, to provide a translation for Brazilian Portuguese, it would be `priv/gettext/pt_BR`)
-1. Run the `script/translate` script to extract and merge the latest version of the strings
-1. Add your translations to the `.po` files under your new directory
-1. Submit a PR with your changes
 
 ## Resources
 
