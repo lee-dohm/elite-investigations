@@ -1,0 +1,3 @@
+.Box-row
+  a.Box-row-link href="#{Routes.story_path(@conn, :show, @story)}" = @story.title
+  .float-right = @story.date

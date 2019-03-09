@@ -1,3 +1,7 @@
-h1 = gettext("GalNet Stories")
-
-= render_many_or_blank(@stories, StoryView, "table_row.html", "blankslate.html", assigns)
+.Box
+  .Box-header
+    h3.Box-title
+      = gettext("GalNet Stories")
+  .Box-body
+    ul
+      = render_many_or_blank(@stories, StoryView, "table_row.html", "blankslate.html", assigns)

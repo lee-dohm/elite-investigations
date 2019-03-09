@@ -7,6 +7,8 @@ defmodule EliteInvestigations.Elite.Story do
 
   import Ecto.Changeset
 
+  @derive {Phoenix.Param, key: :nid}
+
   schema "stories" do
     field :body, :string
     field :date, :string
