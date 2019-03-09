@@ -34,10 +34,8 @@ html lang="en"
       .col-5.centered
         .border-top.text-center.small.my-2.pt-2
           = octicon(:code)
-          '
-          ' with
+          '  with
           = octicon(:heart)
-          '
-          ' by Earen Erlkönig
+          '  by Earen Erlkönig
 
     script src="#{Routes.static_path(@conn, "/js/app.js")}"
