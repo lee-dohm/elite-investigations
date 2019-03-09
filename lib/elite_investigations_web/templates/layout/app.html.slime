@@ -1,0 +1,40 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name="description" content="Collection of information and tools for the Elite: Investigations gaming group"
+    meta name="author" content="Lee Dohm"
+
+    title = gettext "Elite: Investigations"
+    link rel="stylesheet" href="#{Routes.static_path(@conn, "/css/app.css")}"
+
+  body
+    header.masthead
+      .container
+        a.masthead-logo href="/"
+          = mega_octicon(:rocket)
+          = gettext "Elite: Investigations"
+
+    .container
+      = if get_flash(@conn, :info) do
+        p.flash role="alert" = get_flash(@conn, :info)
+
+      = if get_flash(@conn, :error) do
+        p.flash.flash-error role="alert" = get_flash(@conn, :error)
+
+      main role="main"
+        = render @view_module, @view_template, assigns
+
+    / footer.container.my-5
+    /   .columns
+    /     .two-fifths.column.centered
+    /       .border-top.text-center.small.my-2.pt-2
+    /         = link(gettext("About"), to: page_path(@conn, :about), id: "about-link")
+    /         span.px-3
+    /         = github_link(id: "github-link")
+    /       .text-center.small.my-2
+    /         = code_with_heart()
+
+    script src="#{Routes.static_path(@conn, "/js/app.js")}"

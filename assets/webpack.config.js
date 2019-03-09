@@ -1,41 +1,69 @@
-const path = require('path');
-const glob = require('glob');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path')
 
-module.exports = (env, options) => ({
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }),
-      new OptimizeCSSAssetsPlugin({})
-    ]
-  },
-  entry: {
-      './js/app.js': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js'))
-  },
-  output: {
-    filename: 'app.js',
-    path: path.resolve(__dirname, '../priv/static/js')
-  },
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const env = process.env.MIX_ENV || 'dev'
+const isProduction = (env === 'prod')
+const mode = env === 'prod' ? 'production' : 'development'
+
+module.exports = {
+  devtool: 'source-map',
+  entry: ['./js/app.js', './css/app.scss'],
+  mode: mode,
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+        test: /\.scss$/,
+        include: /css/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+                sourceMap: !isProduction
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: [
+                  path.resolve(__dirname, 'node_modules')
+                ],
+                outputStyle: 'compressed',
+                sourceMap: !isProduction
+              }
+            }
+          ]
+        })
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        test: /\.tsx?$/,
+        use: [
+          {loader: 'ts-loader'}
+        ]
       }
     ]
   },
+  output: {
+    path: path.resolve(__dirname, '../priv/static'),
+    filename: 'js/app.js'
+  },
   plugins: [
-    new MiniCssExtractPlugin({ filename: '../css/app.css' }),
-    new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
-  ]
-});
+    new CopyWebpackPlugin([{from: './static'}]),
+    new ExtractTextPlugin('css/app.css')
+  ],
+  resolve: {
+    extensions: [
+      '.js',
+      '.jsx',
+      '.ts',
+      '.tsx'
+    ],
+    modules: [
+      'node_modules',
+      path.resolve(__dirname, './js')
+    ]
+  }
+}
