@@ -17,8 +17,10 @@ defmodule EliteInvestigations.Elite do
       [%Story{}, ...]
 
   """
-  def list_stories do
-    Repo.all(from s in Story, order_by: [desc: s.date])
+  def list_stories(opts \\ []) do
+    order = Keyword.get(opts, :order_by, desc: :date)
+
+    Repo.all(from s in Story, order_by: ^order)
   end
 
   @doc """

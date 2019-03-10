@@ -50,3 +50,9 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 config :ex_doc, :markdown_processor, ExDoc.Markdown.Cmark
+
+config :elite_investigations, EliteInvestigations.Scheduler,
+  jobs: [
+    # Update GalNet database every hour
+    {"@hourly", {EliteInvestigations.Galnet, :update, []}}
+  ]
