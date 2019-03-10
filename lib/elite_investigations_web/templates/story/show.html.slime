@@ -5,4 +5,4 @@
       .float-right
         = @story.date
   .Box-body
-    .galnet-story = render_story(@story)
+    .galnet-story = render_story_body(@story)
