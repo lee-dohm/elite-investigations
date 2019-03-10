@@ -11,11 +11,16 @@ defmodule EliteInvestigations.Elite do
   @doc """
   Returns the list of stories.
 
+  ## Options
+
+  * `:order_by` How to sort the stories -- defaults to by date from newest
+
   ## Examples
 
-      iex> list_stories()
-      [%Story{}, ...]
-
+  ```
+  iex> list_stories()
+  [%Story{}, ...]
+  ```
   """
   def list_stories(opts \\ []) do
     order = Keyword.get(opts, :order_by, desc: :date)
@@ -30,19 +35,35 @@ defmodule EliteInvestigations.Elite do
 
   ## Examples
 
-      iex> get_story!(123)
-      %Story{}
+  ```
+  iex> get_story!(123)
+  %Story{}
 
-      iex> get_story!(456)
-      ** (Ecto.NoResultsError)
-
+  iex> get_story!(456)
+  ** (Ecto.NoResultsError)
+  ```
   """
   def get_story!(id), do: Repo.get!(Story, id)
 
+  @doc """
+  Gets a single story by Galnet ID.
+
+  Raises `Ecto.NoResultsError` if the story does not exist.
+
+  ## Examples
+
+  ```
+  iex> get_story!(123)
+  %Story{}
+
+  iex> get_story!(456)
+  ** (Ecto.NoResultsError)
+  ```
+  """
   def get_story_by_nid!(nid), do: Repo.get_by!(Story, nid: nid)
 
   @doc """
-  Indicates whether the story with the given `nid` exists.
+  Indicates whether the story with the given Galnet ID exists.
   """
   def story_exists?(nid), do: !is_nil(Repo.get_by(Story, nid: nid))
 
@@ -51,12 +72,13 @@ defmodule EliteInvestigations.Elite do
 
   ## Examples
 
-      iex> create_story(%{field: value})
-      {:ok, %Story{}}
+  ```
+  iex> create_story(%{field: value})
+  {:ok, %Story{}}
 
-      iex> create_story(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
+  iex> create_story(%{field: bad_value})
+  {:error, %Ecto.Changeset{}}
+  ```
   """
   def create_story(attrs \\ %{}) do
     %Story{}
@@ -69,12 +91,13 @@ defmodule EliteInvestigations.Elite do
 
   ## Examples
 
-      iex> update_story(stories, %{field: new_value})
-      {:ok, %Story{}}
+  ```
+  iex> update_story(story, %{field: new_value})
+  {:ok, %Story{}}
 
-      iex> update_story(stories, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
+  iex> update_story(story, %{field: bad_value})
+  {:error, %Ecto.Changeset{}}
+  ```
   """
   def update_story(story = %Story{}, attrs) do
     story
@@ -87,12 +110,13 @@ defmodule EliteInvestigations.Elite do
 
   ## Examples
 
-      iex> delete_story(story)
-      {:ok, %Story{}}
+  ```
+  iex> delete_story(story)
+  {:ok, %Story{}}
 
-      iex> delete_story(story)
-      {:error, %Ecto.Changeset{}}
-
+  iex> delete_story(story)
+  {:error, %Ecto.Changeset{}}
+  ```
   """
   def delete_story(story = %Story{}) do
     Repo.delete(story)
@@ -103,9 +127,10 @@ defmodule EliteInvestigations.Elite do
 
   ## Examples
 
-      iex> change_story(story)
-      %Ecto.Changeset{source: %Story{}}
-
+  ```
+  iex> change_story(story)
+  %Ecto.Changeset{source: %Story{}}
+  ```
   """
   def change_story(story = %Story{}) do
     Story.changeset(story, %{})
