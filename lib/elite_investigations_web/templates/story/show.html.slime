@@ -3,6 +3,6 @@
     h3.Box-title
       = @story.title
       .float-right
-        = String.upcase(Timex.format!(@story.date, "%d %b %Y", :strftime))
+        = @story.date
   .Box-body
     .galnet-story = render_story(@story)
