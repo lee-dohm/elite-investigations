@@ -14,7 +14,7 @@ defmodule EliteInvestigations.Galnet do
     feed =
       'https://elitedangerous-website-backend-production.elitedangerous.com/api/galnet?_format=json'
 
-    Logger.debug("Download feed: #{feed}")
+    Logger.debug(fn -> "Download feed: #{feed}" end)
 
     {:ok, resp} = :httpc.request(:get, {feed, []}, [], body_format: :binary)
     {{_, 200, 'OK'}, _headers, body} = resp
@@ -24,7 +24,7 @@ defmodule EliteInvestigations.Galnet do
     body
     |> Jason.decode!(keys: :atoms)
     |> Enum.each(fn story ->
-         unless Elite.story_exists?(story.nid), do: Elite.create_story(story)
-       end)
+      unless Elite.story_exists?(story.nid), do: Elite.create_story(story)
+    end)
   end
 end

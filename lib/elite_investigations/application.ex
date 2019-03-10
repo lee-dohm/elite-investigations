@@ -15,7 +15,7 @@ defmodule EliteInvestigations.Application do
       EliteInvestigations.Scheduler,
 
       # Start the endpoint when the application starts
-      EliteInvestigationsWeb.Endpoint,
+      EliteInvestigationsWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
