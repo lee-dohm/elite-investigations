@@ -15,3 +15,10 @@ config :elite_investigations, EliteInvestigations.Repo,
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+# Production scheduled jobs
+config :elite_investigations, EliteInvestigations.Scheduler,
+  jobs: [
+    # Update GalNet database every four hours
+    {"0 */4 * * *", {EliteInvestigations.Galnet, :update, []}}
+  ]

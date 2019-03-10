@@ -10,10 +10,12 @@ defmodule EliteInvestigations.Application do
     children = [
       # Start the Ecto repository
       EliteInvestigations.Repo,
+
+      # Start the scheduler when the application starts
+      EliteInvestigations.Scheduler,
+
       # Start the endpoint when the application starts
-      EliteInvestigationsWeb.Endpoint
-      # Starts a worker by calling: EliteInvestigations.Worker.start_link(arg)
-      # {EliteInvestigations.Worker, arg},
+      EliteInvestigationsWeb.Endpoint,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

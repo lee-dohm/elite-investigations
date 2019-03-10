@@ -46,6 +46,7 @@ defmodule EliteInvestigations.MixProject do
       {:phoenix, "~> 1.4.1"},
       {:plug_cowboy, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
+      {:quantum, "~> 2.3"},
       {:timex, "~> 3.0"},
       {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.19", only: [:dev, :test], runtime: false},
