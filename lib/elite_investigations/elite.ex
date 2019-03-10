@@ -18,7 +18,7 @@ defmodule EliteInvestigations.Elite do
 
   """
   def list_stories do
-    Repo.all(Story)
+    Repo.all(from s in Story, order_by: [desc: s.date])
   end
 
   @doc """
