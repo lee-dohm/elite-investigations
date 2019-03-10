@@ -74,8 +74,8 @@ defmodule EliteInvestigations.Elite do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_story(%Story{} = stories, attrs) do
-    stories
+  def update_story(story = %Story{}, attrs) do
+    story
     |> Story.changeset(attrs)
     |> Repo.update()
   end
@@ -92,8 +92,8 @@ defmodule EliteInvestigations.Elite do
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_story(%Story{} = stories) do
-    Repo.delete(stories)
+  def delete_story(story = %Story{}) do
+    Repo.delete(story)
   end
 
   @doc """
@@ -105,7 +105,7 @@ defmodule EliteInvestigations.Elite do
       %Ecto.Changeset{source: %Story{}}
 
   """
-  def change_story(%Story{} = story) do
+  def change_story(story = %Story{}) do
     Story.changeset(story, %{})
   end
 end

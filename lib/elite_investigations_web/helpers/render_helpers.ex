@@ -27,7 +27,7 @@ defmodule EliteInvestigationsWeb.RenderHelpers do
     end
   end
 
-  def render_story(story = %Story{}) do
+  def render_story_body(story = %Story{}) do
     story_body =
       ~r{\<br\s*/\>}
       |> Regex.split(story.body, trim: true)
