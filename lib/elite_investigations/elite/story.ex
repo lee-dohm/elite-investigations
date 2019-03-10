@@ -7,11 +7,13 @@ defmodule EliteInvestigations.Elite.Story do
 
   import Ecto.Changeset
 
+  alias EliteInvestigations.Ecto.GalnetDate
+
   @derive {Phoenix.Param, key: :nid}
 
   schema "stories" do
     field :body, :string
-    field :date, :utc_datetime
+    field :date, GalnetDate
     field :image, :string
     field :nid, :integer
     field :slug, :string
