@@ -82,55 +82,32 @@ defmodule EliteInvestigations.MixProject do
           filename: "license",
           title: "License"
         ]
+      ],
+      groups_for_modules: [
+        Controllers: [
+          ~r{^EliteInvestigations.*Controller$}
+        ],
+        "Ecto Types": [
+          ~r{^EliteInvestigations.Ecto.*}
+        ],
+        Helpers: [
+          ~r{^EliteInvestigations.*Helpers$}
+        ],
+        Localization: [
+          EliteInvestigationsWeb.Gettext
+        ],
+        Sockets: [
+          ~r{^EliteInvestigationsWeb.*Socket$}
+        ],
+        Test: [
+          ~r{^EliteInvestigations.*(Channel|Conn|Data)Case$},
+          ~r{^EliteInvestigations.Support},
+          ~r{^Support}
+        ],
+        Views: [
+          ~r{^EliteInvestigationsWeb.*View$}
+        ]
       ]
-      # groups_for_modules: [
-      #   Accounts: [
-      #     ~r{^EliteInvestigations\.Accounts}
-      #   ],
-      #   Controllers: [
-      #     ~r{^EliteInvestigations.*Controller$}
-      #   ],
-      #   "Ecto Types": [
-      #     ~r{^EliteInvestigations.Ecto.*}
-      #   ],
-      #   Helpers: [
-      #     ~r{^EliteInvestigations.*Helpers$}
-      #   ],
-      #   Localization: [
-      #     EliteInvestigationsWeb.Gettext
-      #   ],
-      #   Markdown: [
-      #     ~r{Markdown}
-      #   ],
-      #   Notes: [
-      #     ~r{^EliteInvestigations.Notes}
-      #   ],
-      #   OAuth: [
-      #     EliteInvestigationsWeb.GitHub
-      #   ],
-      #   Plugs: [
-      #     EliteInvestigationsWeb.HerokuMetadata,
-      #     EliteInvestigationsWeb.PageMetadata,
-      #     EliteInvestigationsWeb.SlidingSessionTimeout
-      #   ],
-      #   Primer: [
-      #     ~r{^EliteInvestigationsWeb\.Primer}
-      #   ],
-      #   Sockets: [
-      #     ~r{^EliteInvestigationsWeb.*Socket$}
-      #   ],
-      #   Test: [
-      #     ~r{^EliteInvestigations.*(Channel|Conn|Data)Case$},
-      #     ~r{^EliteInvestigations.Support},
-      #     ~r{^Support}
-      #   ],
-      #   Tweaks: [
-      #     ~r{^EliteInvestigations\.Tweaks}
-      #   ],
-      #   Views: [
-      #     ~r{^EliteInvestigationsWeb.*View$}
-      #   ]
-      # ]
     ]
   end
 end
