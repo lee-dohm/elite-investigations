@@ -11,7 +11,7 @@ defmodule EliteInvestigations.Elite.Story do
 
   schema "stories" do
     field :body, :string
-    field :date, :string
+    field :date, :utc_datetime
     field :image, :string
     field :nid, :integer
     field :slug, :string
