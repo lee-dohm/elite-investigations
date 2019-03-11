@@ -8,6 +8,7 @@ html lang="en"
     meta name="author" content="Earen Erlkönig"
 
     title = gettext "Elite: Investigations"
+    link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sintony"
     link rel="stylesheet" href="#{Routes.static_path(@conn, "/css/app.css")}"
 
   body
