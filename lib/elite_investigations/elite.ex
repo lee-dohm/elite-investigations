@@ -160,8 +160,8 @@ defmodule EliteInvestigations.Elite do
       from s in Story,
       join: q in subquery(sub_query),
       on: q.s_nid == s.nid,
-      where: fragment("? @@ to_tsquery(?)", q.document, ^search_text),
-      order_by: fragment("ts_rank(?, to_tsquery(?)) DESC", q.document, ^search_text)
+      where: fragment("? @@ websearch_to_tsquery(?)", q.document, ^search_text),
+      order_by: fragment("ts_rank(?, websearch_to_tsquery(?)) DESC", q.document, ^search_text)
 
     Repo.all(query)
   end
