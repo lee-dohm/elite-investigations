@@ -4,9 +4,9 @@ defmodule EliteInvestigations.Elite do
   """
 
   import Ecto.Query, warn: false
-  alias EliteInvestigations.Repo
 
   alias EliteInvestigations.Elite.Story
+  alias EliteInvestigations.Repo
 
   @doc """
   Returns the list of stories.
@@ -134,5 +134,34 @@ defmodule EliteInvestigations.Elite do
   """
   def change_story(story = %Story{}) do
     Story.changeset(story, %{})
+  end
+
+  @doc """
+  Searches stories for `search_text`.
+
+  Matches are ranked by weighting title matches heavier than body matches.
+
+  Returns a list of story network IDs and titles.
+  """
+  def search_stories(search_text) do
+    sub_query =
+      from s in Story,
+      select: %{
+        s_nid: s.nid,
+        s_title: s.title,
+        document: fragment(
+                    "setweight(to_tsvector(?), 'A') || setweight(to_tsvector(?), 'B')",
+                    s.title,
+                    s.body
+                  )
+      }
+
+    query =
+      from q in subquery(sub_query),
+      select: [q.s_nid, q.s_title],
+      where: fragment("? @@ to_tsquery(?)", q.document, ^search_text),
+      order_by: fragment("ts_rank(?, to_tsquery(?)) DESC", q.document, ^search_text)
+
+    Repo.all(query)
   end
 end
