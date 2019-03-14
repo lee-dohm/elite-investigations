@@ -13,7 +13,7 @@ defmodule EliteInvestigations.Elite do
 
   ## Options
 
-  * `:order_by` How to sort the stories -- defaults to by date from newest
+  * `:order_by` How to sort the stories -- defaults to by `date` then `nid` from newest
 
   ## Examples
 
@@ -23,7 +23,7 @@ defmodule EliteInvestigations.Elite do
   ```
   """
   def list_stories(opts \\ []) do
-    order = Keyword.get(opts, :order_by, desc: :date)
+    order = Keyword.get(opts, :order_by, desc: :date, desc: :nid)
 
     Repo.all(from s in Story, order_by: ^order)
   end
