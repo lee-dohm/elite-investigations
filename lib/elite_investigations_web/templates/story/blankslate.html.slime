@@ -1,2 +1,5 @@
 .blankslate
-  h3 = gettext "No stories for you to see here"
+  = if @search_text == "" do
+    h3 = gettext "No stories for you to see here"
+  - else
+    h3 = gettext "No matching stories found"
