@@ -18,6 +18,7 @@ defmodule EliteInvestigationsWeb.Router do
 
     get "/", PageController, :index
 
+    get "/galnet/search", StoryController, :search
     resources "/galnet", StoryController, only: [:index, :show]
   end
 
