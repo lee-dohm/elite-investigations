@@ -9,12 +9,13 @@ html lang="en"
 
     title = gettext "Elite: Investigations"
     link rel="stylesheet" href="#{Routes.static_path(@conn, "/css/app.css")}"
+    link rel="shortcut icon" href="#{Routes.static_path(@conn, "/favicon.ico")}"
 
   body
     header.masthead
       .container
         a.masthead-logo href="/"
-          = mega_octicon(:rocket)
+          img src="#{Routes.static_path(@conn, "/images/ei-icon.png")}" height="32"
           = gettext "Elite: Investigations"
 
         nav.masthead-nav
