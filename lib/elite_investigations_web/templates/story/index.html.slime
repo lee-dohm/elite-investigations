@@ -1,7 +1,16 @@
+form.mb-3
+  .input-group
+    input.form-control#search-text type="text" placeholder="Search" aria-label="Search" value="#{@search_text}"
+    input#search-type type="hidden" value="galnet"
+    span.input-group-button
+      button.btn#search-button type="button" aria-label="Execute search"
+        = octicon(:search)
+
 .Box
   .Box-header
     h3.Box-title
-      = gettext("GalNet Stories")
+      a href="#{Routes.story_path(@conn, :index)}"
+        = gettext("GalNet Stories")
   .Box-body
     ul
       = render_many_or_blank(@stories, StoryView, "table_row.html", "blankslate.html", assigns)

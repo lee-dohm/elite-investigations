@@ -13,9 +13,21 @@ defmodule EliteInvestigationsWeb.StoryController do
   def index(conn, _params) do
     stories = Elite.list_stories()
 
-    render(conn, "index.html", stories: stories)
+    render(conn, "index.html", search_text: "", stories: stories)
   end
 
+  @doc """
+  Displays the search results for `search_text`.
+  """
+  def search(conn, %{"q" => search_text}) do
+    stories = Elite.search_stories(search_text)
+
+    render(conn, "index.html", search_text: search_text, stories: stories)
+  end
+
+  @doc """
+  Displays the GalNet story identified by `nid`.
+  """
   def show(conn, %{"id" => nid}) do
     story = Elite.get_story_by_nid!(nid)
 

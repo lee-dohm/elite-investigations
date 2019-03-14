@@ -157,8 +157,9 @@ defmodule EliteInvestigations.Elite do
       }
 
     query =
-      from q in subquery(sub_query),
-      select: [q.s_nid, q.s_title],
+      from s in Story,
+      join: q in subquery(sub_query),
+      on: q.s_nid == s.nid,
       where: fragment("? @@ to_tsquery(?)", q.document, ^search_text),
       order_by: fragment("ts_rank(?, to_tsquery(?)) DESC", q.document, ^search_text)
 
