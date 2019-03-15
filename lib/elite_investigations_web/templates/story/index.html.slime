@@ -1,8 +1,8 @@
 form.mb-3 action="#{Routes.story_path(@conn, :search)}" method="get"
   .input-group
-    input.form-control#search-text name="q" type="text" placeholder="Search" aria-label="Search" value="#{@search_text}"
+    input.form-control name="q" type="text" placeholder="Search" aria-label="Search" value="#{@search_text}"
     span.input-group-button
-      button.btn#search-button type="submit" aria-label="Execute search"
+      button.btn type="submit" aria-label="Execute search"
         = octicon(:search)
 
 .Box
