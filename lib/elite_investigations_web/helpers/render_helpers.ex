@@ -8,6 +8,7 @@ defmodule EliteInvestigationsWeb.RenderHelpers do
   import Phoenix.View
 
   alias EliteInvestigations.Elite.Story
+  alias EliteInvestigations.Galnet
 
   @doc """
   Renders `enumerable` using one of the templates depending on whether it is empty.
@@ -43,12 +44,8 @@ defmodule EliteInvestigationsWeb.RenderHelpers do
   Renders the body text of a `Story`.
   """
   def render_story_body(story = %Story{}) do
-    story_body =
-      ~r{\<br\s*/\>}
-      |> Regex.split(story.body, trim: true)
-      |> Enum.map(fn paragraph -> "<p>#{paragraph}</p>" end)
-      |> Enum.join()
-
-    raw(story_body)
+    story.body
+    |> Galnet.normalize_body()
+    |> raw()
   end
 end

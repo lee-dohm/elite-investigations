@@ -12,4 +12,6 @@ const searchTextElement = document.querySelector('#search-text') as HTMLInputEle
 const searchTypeElement = document.querySelector('#search-type') as HTMLInputElement
 const searchButton = document.querySelector('#search-button') as HTMLButtonElement
 
-searchButton.addEventListener('click', executeSearch)
+if (searchButton) {
+  searchButton.addEventListener('click', executeSearch)
+}
