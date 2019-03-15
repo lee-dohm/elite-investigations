@@ -19,9 +19,9 @@ defmodule EliteInvestigationsWeb.StoryController do
   @doc """
   Displays the search results for `search_text`.
   """
-  def search(conn, %{"q" => search_text}) do
-    if search_text == "", do: redirect(conn, to: Routes.story_path(conn, :index))
+  def search(conn, %{"q" => ""}), do: redirect(conn, to: Routes.story_path(conn, :index))
 
+  def search(conn, %{"q" => search_text}) do
     stories = Elite.search_stories(search_text)
 
     render(conn, "index.html", search_text: search_text, stories: stories)
