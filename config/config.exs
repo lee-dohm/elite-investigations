@@ -23,6 +23,13 @@ config :phoenix, :template_engines,
   slim: PhoenixSlime.Engine,
   slime: PhoenixSlime.Engine
 
+config :sentry,
+  dsn: "https://db898e07372d4f2e91043a897a179476@sentry.io/1417045",
+  included_environments: [:prod],
+  environment_name: Mix.env(),
+  enable_source_code_context: true,
+  root_source_code_path: File.cwd!()
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

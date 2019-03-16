@@ -22,3 +22,9 @@ config :elite_investigations, EliteInvestigations.Scheduler,
     # Update GalNet database every four hours
     {"0 */4 * * *", {EliteInvestigations.Galnet, :update, []}}
   ]
+
+# Configure error tracking system
+config :sentry,
+  tags: %{
+    env: "production"
+  }
