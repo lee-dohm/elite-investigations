@@ -1,6 +1,6 @@
 defmodule EliteInvestigations.Galnet do
   @moduledoc """
-  Functions for dealing with GalNet.
+  Functions for dealing with GalNet data.
   """
 
   alias EliteInvestigations.Elite
@@ -18,19 +18,13 @@ defmodule EliteInvestigations.Galnet do
     |> Regex.run(body)
     |> List.last()
     |> String.split(~r{<br\s*/>})
-    |> Enum.map(fn para -> String.trim(para) end)
-    |> Enum.map(fn para ->
-         if Regex.match?(~r{\A["“](.+)["”]\z}u, para) do
-           Regex.replace(~r{\A["“](.+)["”]\z}u, para, "<blockquote>\\0</blockquote>")
-         else
-           "<p>#{para}</p>"
-         end
-       end)
+    |> Enum.map(&String.trim/1)
+    |> Enum.map(&wrap_in_tags/1)
     |> Enum.join("\n")
   end
 
   @doc """
-  Adds new GalNet stories to the database.
+  Adds new GalNet stories from the Frontier Developments feed to the database.
   """
   def update do
     feed =
@@ -48,5 +42,13 @@ defmodule EliteInvestigations.Galnet do
     |> Enum.each(fn story ->
       unless Elite.story_exists?(story.nid), do: Elite.create_story(story)
     end)
+  end
+
+  defp wrap_in_tags(para) do
+    if Regex.match?(~r{\A["“](.+)["”]\z}u, para) do
+      Regex.replace(~r{\A["“](.+)["”]\z}u, para, "<blockquote>\\0</blockquote>")
+    else
+      "<p>#{para}</p>"
+    end
   end
 end

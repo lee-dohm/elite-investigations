@@ -146,22 +146,23 @@ defmodule EliteInvestigations.Elite do
   def search_stories(search_text) do
     sub_query =
       from s in Story,
-      select: %{
-        s_nid: s.nid,
-        s_title: s.title,
-        document: fragment(
-                    "setweight(to_tsvector(?), 'A') || setweight(to_tsvector(?), 'B')",
-                    s.title,
-                    s.body
-                  )
-      }
+        select: %{
+          s_nid: s.nid,
+          s_title: s.title,
+          document:
+            fragment(
+              "setweight(to_tsvector(?), 'A') || setweight(to_tsvector(?), 'B')",
+              s.title,
+              s.body
+            )
+        }
 
     query =
       from s in Story,
-      join: q in subquery(sub_query),
-      on: q.s_nid == s.nid,
-      where: fragment("? @@ websearch_to_tsquery(?)", q.document, ^search_text),
-      order_by: fragment("ts_rank(?, websearch_to_tsquery(?)) DESC", q.document, ^search_text)
+        join: q in subquery(sub_query),
+        on: q.s_nid == s.nid,
+        where: fragment("? @@ websearch_to_tsquery(?)", q.document, ^search_text),
+        order_by: fragment("ts_rank(?, websearch_to_tsquery(?)) DESC", q.document, ^search_text)
 
     Repo.all(query)
   end
