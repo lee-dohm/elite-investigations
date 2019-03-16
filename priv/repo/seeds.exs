@@ -10,10 +10,9 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias EliteInvestigations.Elite
+alias EliteInvestigations.Galnet
 
 __DIR__
 |> Path.join("galnet-sample.json")
 |> File.read!()
-|> Jason.decode!(keys: :atoms)
-|> Enum.each(fn story -> Elite.create_story(story) end)
+|> Galnet.load_feed()

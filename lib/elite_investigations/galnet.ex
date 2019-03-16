@@ -1,6 +1,6 @@
 defmodule EliteInvestigations.Galnet do
   @moduledoc """
-  Functions for dealing with GalNet data.
+  Functions for downloading the GalNet feed and loading it into the database.
   """
 
   alias EliteInvestigations.Elite
@@ -8,25 +8,17 @@ defmodule EliteInvestigations.Galnet do
   require Logger
 
   @doc """
-  Converts the body text from the Frontier Development format to a more HTML-standard format.
-
-  It does this by:
-
-  1. Removing `br` tags
-  1. Wrapping normal paragraphs in `p` tags
-  1. Wrapping paragraphs that consist solely of a quotation in `blockquote` tags
+  Loads the JSON feed data into the database.
   """
-  def normalize_body(body) do
-    strip_p_tags = ~r{\A<p>(.+)</p>\z}ms
-    body = String.trim(body)
+  def load_feed(body) do
+    Logger.debug("Update GalNet records")
 
-    strip_p_tags
-    |> Regex.run(body)
-    |> List.last()
-    |> String.split(~r{<br\s*/>})
-    |> Enum.map(&String.trim/1)
-    |> Enum.map(&wrap_in_tags/1)
-    |> Enum.join("\n")
+    body
+    |> Jason.decode!(keys: :atoms)
+    |> Enum.map(&clean_feed_data/1)
+    |> Enum.each(fn story ->
+      unless Elite.story_exists?(story.nid), do: Elite.create_story(story)
+    end)
   end
 
   @doc """
@@ -41,20 +33,14 @@ defmodule EliteInvestigations.Galnet do
     {:ok, resp} = :httpc.request(:get, {feed, []}, [], body_format: :binary)
     {{_, 200, 'OK'}, _headers, body} = resp
 
-    Logger.debug("Update GalNet records")
-
-    body
-    |> Jason.decode!(keys: :atoms)
-    |> Enum.each(fn story ->
-      unless Elite.story_exists?(story.nid), do: Elite.create_story(story)
-    end)
+    load_feed(body)
   end
 
-  defp wrap_in_tags(para) do
-    if Regex.match?(~r{\A["“](.+)["”]\z}u, para) do
-      Regex.replace(~r{\A["“](.+)["”]\z}u, para, "<blockquote>\\0</blockquote>")
-    else
-      "<p>#{para}</p>"
-    end
+  defp clean_feed_data(story) do
+    story
+    |> Map.update!(:body, &String.trim/1)
+    |> Map.update!(:image, &String.trim/1)
+    |> Map.update!(:slug, &String.trim/1)
+    |> Map.update!(:title, &String.trim/1)
   end
 end
