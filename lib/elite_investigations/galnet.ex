@@ -4,6 +4,8 @@ defmodule EliteInvestigations.Galnet do
   """
 
   alias EliteInvestigations.Elite
+  alias EliteInvestigations.Elite.Story
+  alias EliteInvestigations.Maintenance
 
   require Logger
 
@@ -19,6 +21,9 @@ defmodule EliteInvestigations.Galnet do
     |> Enum.each(fn story ->
       unless Elite.story_exists?(story.nid), do: Elite.create_story(story)
     end)
+
+    Logger.debug("Set last updated record")
+    Maintenance.set_last_updated!(Story)
   end
 
   @doc """
