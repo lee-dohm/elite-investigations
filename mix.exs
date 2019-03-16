@@ -47,6 +47,7 @@ defmodule EliteInvestigations.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
       {:quantum, "~> 2.3"},
+      {:sentry, "~> 6.4"},
       {:timex, "~> 3.0"},
       {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
       {:floki, "~> 0.20", only: [:test], runtime: false},
