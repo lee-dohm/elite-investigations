@@ -49,6 +49,7 @@ defmodule EliteInvestigations.MixProject do
       {:quantum, "~> 2.3"},
       {:timex, "~> 3.0"},
       {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:floki, "~> 0.20", only: [:test], runtime: false},
       {:ex_doc, "~> 0.19", only: [:dev, :test], runtime: false},
       {:phoenix_live_reload, "~> 1.2", only: :dev}
     ]
