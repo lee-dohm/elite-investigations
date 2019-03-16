@@ -32,8 +32,8 @@ html lang="en"
         = render @view_module, @view_template, assigns
 
     footer.container.my-5
-      .col-5.centered
-        .border-top.text-center.small.my-2.pt-2
+      .col-5.border-top.centered
+        .text-center.small.my-2.pt-2
           = octicon(:code)
           '  with
           = octicon(:heart)
