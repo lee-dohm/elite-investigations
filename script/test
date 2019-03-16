@@ -28,9 +28,9 @@ else
   script/update
 fi
 
-echo "==> Checking format…"
+echo "==> Formatting…"
 
-mix format --check-formatted
+mix format
 
 echo "==> Running linter…"
 
