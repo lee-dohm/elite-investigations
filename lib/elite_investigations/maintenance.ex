@@ -37,7 +37,13 @@ defmodule EliteInvestigations.Maintenance do
   ** (Ecto.NoResultsError)
   ```
   """
-  def get_last_updated!(name), do: Repo.get_by!(LastUpdated, name: name)
+  def get_last_updated!(name) when is_binary(name), do: Repo.get_by!(LastUpdated, name: name)
+
+  def get_last_updated!(record_type) when is_atom(record_type) do
+    record_type
+    |> Atom.to_string()
+    |> get_last_updated!()
+  end
 
   @doc """
   Sets the last updated time of a given service to now.
@@ -49,7 +55,13 @@ defmodule EliteInvestigations.Maintenance do
   %LastUpdated{}
   ```
   """
-  def set_last_updated!(service_name) do
+  def set_last_updated!(record_type) when is_atom(record_type) do
+    record_type
+    |> Atom.to_string()
+    |> set_last_updated!()
+  end
+
+  def set_last_updated!(service_name) when is_binary(service_name) do
     record =
       case Repo.get_by(LastUpdated, name: service_name) do
         nil -> %LastUpdated{}

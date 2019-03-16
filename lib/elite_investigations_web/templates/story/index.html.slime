@@ -10,6 +10,10 @@ form.mb-3 action="#{Routes.story_path(@conn, :search)}" method="get"
     h3.Box-title
       a href="#{Routes.story_path(@conn, :index)}"
         = gettext("GalNet Stories")
+    div
+      strong = gettext("Last updated:")
+      '
+      relative-time datetime="#{DateTime.to_iso8601(@last_updated.updated_at)}" = @last_updated.updated_at
   .Box-body
     ul
       = render_many_or_blank(@stories, StoryView, "table_row.html", "blankslate.html", assigns)

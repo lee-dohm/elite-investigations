@@ -8,7 +8,8 @@
   "dependencies": {
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
-    "primer": "^11.0.0"
+    "primer": "^11.0.0",
+    "timeago.js": "^4.0.0-beta.2"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^4.5.0",
