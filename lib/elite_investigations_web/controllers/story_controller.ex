@@ -28,7 +28,11 @@ defmodule EliteInvestigationsWeb.StoryController do
     stories = Elite.search_stories(search_text)
     last_updated = Maintenance.get_last_updated!(Story)
 
-    render(conn, "index.html", last_updated: last_updated, search_text: search_text, stories: stories)
+    render(conn, "index.html",
+      last_updated: last_updated,
+      search_text: search_text,
+      stories: stories
+    )
   end
 
   @doc """

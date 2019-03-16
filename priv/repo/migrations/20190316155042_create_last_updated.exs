@@ -3,8 +3,8 @@ defmodule EliteInvestigations.Repo.Migrations.CreateLastUpdated do
 
   def change do
     create table(:last_updated) do
-      add :name, :string
-      add :updated_at, :utc_datetime
+      add :name, :string, null: false
+      add :updated_at, :utc_datetime, null: false
     end
 
     create index(:last_updated, [:name], unique: true)

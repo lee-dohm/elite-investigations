@@ -10,6 +10,7 @@ defmodule EliteInvestigations.MaintenanceTest do
     @invalid_name nil
 
     def last_updated_fixture(name), do: Maintenance.set_last_updated!(name)
+
     def last_updated_fixture(name, time) do
       %LastUpdated{}
       |> LastUpdated.changeset(%{name: name, updated_at: time})
@@ -49,7 +50,7 @@ defmodule EliteInvestigations.MaintenanceTest do
     end
 
     test "set_last_updated!/1 raises an error when an invalid name is given" do
-      assert_raise ArgumentError, fn ->
+      assert_raise Ecto.InvalidChangesetError, fn ->
         Maintenance.set_last_updated!(@invalid_name)
       end
     end

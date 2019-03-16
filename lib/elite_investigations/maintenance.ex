@@ -41,7 +41,7 @@ defmodule EliteInvestigations.Maintenance do
 
   def get_last_updated!(record_type) when is_atom(record_type) do
     record_type
-    |> Atom.to_string()
+    |> to_string()
     |> get_last_updated!()
   end
 
@@ -57,7 +57,7 @@ defmodule EliteInvestigations.Maintenance do
   """
   def set_last_updated!(record_type) when is_atom(record_type) do
     record_type
-    |> Atom.to_string()
+    |> to_string()
     |> set_last_updated!()
   end
 
