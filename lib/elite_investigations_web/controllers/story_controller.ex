@@ -6,14 +6,17 @@ defmodule EliteInvestigationsWeb.StoryController do
   use EliteInvestigationsWeb, :controller
 
   alias EliteInvestigations.Elite
+  alias EliteInvestigations.Elite.Story
+  alias EliteInvestigations.Maintenance
 
   @doc """
   Displays the list of GalNet stories.
   """
   def index(conn, _params) do
     stories = Elite.list_stories()
+    last_updated = Maintenance.get_last_updated!(Story)
 
-    render(conn, "index.html", search_text: "", stories: stories)
+    render(conn, "index.html", last_updated: last_updated, search_text: "", stories: stories)
   end
 
   @doc """
@@ -23,8 +26,13 @@ defmodule EliteInvestigationsWeb.StoryController do
 
   def search(conn, %{"q" => search_text}) do
     stories = Elite.search_stories(search_text)
+    last_updated = Maintenance.get_last_updated!(Story)
 
-    render(conn, "index.html", search_text: search_text, stories: stories)
+    render(conn, "index.html",
+      last_updated: last_updated,
+      search_text: search_text,
+      stories: stories
+    )
   end
 
   @doc """
