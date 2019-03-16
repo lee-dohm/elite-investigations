@@ -9,6 +9,12 @@ defmodule EliteInvestigations.Galnet do
 
   @doc """
   Converts the body text from the Frontier Development format to a more HTML-standard format.
+
+  It does this by:
+
+  1. Removing `br` tags
+  1. Wrapping normal paragraphs in `p` tags
+  1. Wrapping paragraphs that consist solely of a quotation in `blockquote` tags
   """
   def normalize_body(body) do
     strip_p_tags = ~r{\A<p>(.+)</p>\z}ms
