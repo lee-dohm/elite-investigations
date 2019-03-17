@@ -1,8 +1,14 @@
 .Box
-  .Box-header
-    h3.Box-title
-      = @story.title
-      .float-right
-        = @story.date
+  .Box-header.d-flex.flex-column
+    h3.Box-title.flex-auto.d-inline-flex
+      .flex-auto = @story.title
+      div = @story.date
+    div
+      strong Source:
+      = if @story.from_frontier do
+        '  Frontier news feed
+      - else
+        '
+        a href="http://ed.frank-heinrich.net/index.php?title=Galnet_Collection_News_Articles" http://ed.frank-heinrich.net
   .Box-body
     .galnet-story = render_story_body(@story)
