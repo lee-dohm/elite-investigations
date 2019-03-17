@@ -44,6 +44,7 @@ defmodule EliteInvestigations.Galnet do
   defp clean_feed_data(story) do
     story
     |> Map.update!(:body, &String.trim/1)
+    |> Map.put(:from_frontier, true)
     |> Map.update!(:image, &String.trim/1)
     |> Map.update!(:slug, &String.trim/1)
     |> Map.update!(:title, &String.trim/1)

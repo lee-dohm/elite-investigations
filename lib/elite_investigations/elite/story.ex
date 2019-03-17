@@ -14,7 +14,7 @@ defmodule EliteInvestigations.Elite.Story do
   schema "stories" do
     field :body, :string
     field :date, GalnetDate
-    field :from_frontier, :boolean
+    field :from_frontier, :boolean, default: true
     field :image, :string
     field :nid, :integer
     field :slug, :string
@@ -27,6 +27,6 @@ defmodule EliteInvestigations.Elite.Story do
   def changeset(story, attrs) do
     story
     |> cast(attrs, [:title, :body, :nid, :date, :from_frontier, :image, :slug])
-    |> validate_required([:title, :body, :nid, :date, :from_frontier, :image, :slug])
+    |> validate_required([:title, :body, :nid, :date, :image, :slug])
   end
 end
