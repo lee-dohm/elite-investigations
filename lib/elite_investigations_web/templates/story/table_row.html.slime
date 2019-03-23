@@ -1,3 +1,5 @@
-.Box-row
-  a.Box-row-link href="#{Routes.story_path(@conn, :show, @story)}" = @story.title
-  .float-right = @story.date
+.Box-row.d-flex
+  .flex-auto.px-1
+    a.Box-row-link href="#{Routes.story_path(@conn, :show, @story)}" = @story.title
+  .px-1 = @story.date
+  .px-1 = if @story.from_frontier, do: "FDev", else: "Wiki"
