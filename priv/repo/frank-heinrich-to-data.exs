@@ -19,12 +19,6 @@ records =
   |> Enum.reduce({[], []}, fn line, acc ->
        {current, records} = acc
 
-       # cond do
-       #   String.match?(line, ~r{^<h2>(.*)</h2>$}) -> {[line], records}
-       #   String.match?(line, ~r{^<p>(.*)</a>$}) -> {current, records}
-       #   String.match?(line, ~r{^</p>$}) -> {[], [Enum.reverse(current) | records]}
-       #   true -> {[line | current], records}
-       # end
        cond do
          String.match?(line, ~r{^<h2>(.*)</h2>$}) -> {[line], [Enum.reverse(current) | records]}
          String.match?(line, ~r{^<p>(.*)</a>$}) -> {current, records}
