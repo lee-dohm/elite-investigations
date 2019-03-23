@@ -43,7 +43,7 @@ records =
          title: title
        }
      end)
-  |> Enum.with_index(1)
+  |> Enum.with_index(-1600)
   |> Enum.map(fn {map, index} ->
        Map.put(map, :nid, index)
      end)
