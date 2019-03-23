@@ -54,10 +54,5 @@ records =
        Map.put(map, :nid, index)
      end)
 
-text = inspect(records, pretty: true, limit: :infinity)
-
-data_file = Path.join(__DIR__, "frank-heinrich-data.exs")
-File.write!(data_file, text)
-
 json_file = Path.join(__DIR__, "frank-heinrich-data.json")
 File.write!(json_file, Jason.encode!(records, pretty: true))
